@@ -1,0 +1,7 @@
+/venv
+
+/db.sqlite3
+
+.idea
+
+/data/source_anm_ner.ckpt

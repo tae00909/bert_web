@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" href="{% static 'css/test.css' %}" />
+
+</head>
+<body>
+{#    <form action="" method="post">#}
+{#        {% csrf_token %}#}
+{#        {{ form }}#}
+{#        <input type="submit">#}
+{#    </form>#}
+{##}
+{#    {% if form.is_valid %}#}
+{#        <p> words : <b>{{ words }}</b></p>#}
+{#        <p> anms: <b>{{ anms }}</b></p>#}
+{#        <p> ners: <b>{{ ners }}</b></p>#}
+{#    {% endif %}#}
+
+    <section class="py-5">
+        <div class="container">
+            <!-- FOR DEMO  PURPOSE -->
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <header class="text-center pb-5">
+                        <h1 class="h2">제목</h1>
+                        <p>Build a nicely styled quote in Bootstrap 4.<br>Bootstrap snippet by <a href="https://bootstrapious.com/snippets" class="font-italic text-info">Bootstrapious</a></p>
+                    </header>
+                </div>
+            </div><!-- END -->
+
+
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+
+                    <!-- CUSTOM BLOCKQUOTE -->
+{#                    <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">#}
+{#                        <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>#}
+{#                        <p class="mb-0 mt-2 font-italic">"(여기는 문장)Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo <a href="#" class="text-info">@consequat</a>."</p>#}
+{#                        <footer class="blockquote-footer pt-4 mt-4 border-top">(여기는 결과)Someone famous in#}
+{#                            <cite title="Source Title">Source Title</cite>#}
+{#                        </footer>#}
+{#                    </blockquote><!-- END -->#}
+                    <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
+                        <div class="mb-3">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <label for="exampleFormControlTextarea1" class="form-label">문장 입력</label>
+                                {{ form }}
+                                <input type="submit">
+                            </form>
+                        </div>
+                    </blockquote>
+                    {% if form.is_valid %}#}
+                        <p> words : <b>{{ words }}</b></p>
+                        <p> anms: <b>{{ anms }}</b></p>
+                        <p> ners: <b>{{ ners }}</b></p>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -90,7 +90,7 @@ class MultiLabelNER(pl.LightningModule):
 
         self.accuracy.reset()
 
-    def predict(self, inputs: torch.Tensor) -> List[List[Tuple[str, int, int]]]:
+    def predict(self, inputs: torch.Tensor):
         """
         :param inputs: (N, 3, L)
         :return:
@@ -105,15 +105,14 @@ class MultiLabelNER(pl.LightningModule):
         logits_1 = self.W_1(H_all) # (N, L, H) -> (N, L, T_1) 3
         logits_2 = self.W_2(H_all) # (N, L, H) -> (N, L, T_2) 13
 
-        logits_1 = torch.softmax(logits_1, dim=2)
-        logits_2 = torch.softmax(logits_2, dim=2)
+        probs_1 = torch.softmax(logits_1, dim=2)
+        probs_2 = torch.softmax(logits_2, dim=2)
         # [[(단어, anm, ner)]]
 
-        anm = torch.argmax(logits_1, dim=2).tolist()  # (N, L)
-        ner = torch.argmax(logits_2, dim=2).tolist()  # (N, L)
+        labels_1 = torch.argmax(probs_1, dim=2)  # (N, L)
+        labels_2 = torch.argmax(probs_2, dim=2) # (N, L)
 
-        predictions = list(zip(inputs[:, 0].tolist()[0], anm[0], ner[0]))
-        return predictions
+        return labels_1, labels_2
 
     def configure_optimizers(self):
         # 옵티마이저 설정은 여기에서
@@ -138,6 +137,8 @@ def model_infer(text):
     bert = AutoModel.from_config(AutoConfig.from_pretrained('kykim/bert-kor-base'))
     model = MultiLabelNER.load_from_checkpoint('data/source_anm_ner.ckpt',
                                                bert=bert)
+
+    text = "[CLS]" + text + "[SEP]"
     tokens: List[str] = tokenizer.tokenize(text)
     sentences: List[List[Tuple[str, str, str]]] = [
         [
@@ -152,16 +153,18 @@ def model_infer(text):
     model.eval()
     model.freeze()
 
-    predictions: List[List[Tuple[str, int, int]]] = model.predict(inputs)
+    anm_labels, ner_labels = model.predict(inputs)
+    anm_labels = anm_labels[0]
+    ner_labels = ner_labels[0]
+
 
     words = []
     anms = []
     ners = []
 
-    for i in predictions:
-        if i[0] != 0:
-            words.append(tokenizer.decode(i[0]))
-            anms.append(ANM_CLASSES[i[1]])
-            ners.append(NER_CLASSES[i[2]])
+    for word, anm_label, ner_label in zip(tokens, anm_labels, ner_labels):
+        words.append(word)
+        anms.append(ANM_CLASSES[anm_label])
+        ners.append(NER_CLASSES[ner_label])
 
     return words, anms, ners

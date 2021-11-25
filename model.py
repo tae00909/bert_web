@@ -160,11 +160,25 @@ def model_infer(text):
 
     words = []
     anms = []
-    ners = []
+    ners_tag = []
 
     for word, anm_label, ner_label in zip(tokens, anm_labels, ner_labels):
-        words.append(word)
-        anms.append(ANM_CLASSES[anm_label])
-        ners.append(NER_CLASSES[ner_label])
+        if ANM_CLASSES[anm_label] != 'O':
+            words.append(word)
+            anms.append(ANM_CLASSES[anm_label])
+            ners_tag.append(NER_CLASSES[ner_label])
+
+    index_list = []
+    ners = {}
+
+    for i in range(len(ners_tag)):
+        if ners_tag[i][-1] == 'B':
+            index_list.append(i)
+
+    for i in range(len(index_list)):
+        if i == len(index_list) - 1:
+            ners[ners_tag[index_list[i]][:3]] = words[index_list[i]:]
+        else:
+            ners[ners_tag[index_list[i]][:3]] = words[index_list[i]:index_list[i + 1]]
 
     return words, anms, ners

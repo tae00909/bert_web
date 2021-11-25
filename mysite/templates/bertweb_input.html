@@ -31,8 +31,10 @@
             <div class="row">
                 <div class="col-lg-6 mx-auto">
                     <header class="text-center pb-5">
-                        <h1 class="h2">제목</h1>
-                        <p>Build a nicely styled quote in Bootstrap 4.<br>Bootstrap snippet by <a href="https://bootstrapious.com/snippets" class="font-italic text-info">Bootstrapious</a></p>
+                        <h1 class="h2">B.E.R.T</h1>
+                        <div align="right">
+                            <a href ="{% url 'tag' %}">What is B.E.R.T?</a>
+                        </div>
                     </header>
                 </div>
             </div><!-- END -->
@@ -55,7 +57,7 @@
                                 {% csrf_token %}
                                 <label for="exampleFormControlTextarea1" class="form-label">문장 입력</label>
                                 {{ form }}
-                                <input type="submit">
+                                <input type="submit" value="submit">
                             </form>
                         </div>
                     </blockquote>

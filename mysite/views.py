@@ -44,3 +44,6 @@ def bert_output(request):
     return render(request, 'bertweb_output.html', {'words': pred[0],
                                                    'anms': pred[1],
                                                    'ners': pred[2]})
+
+def bert_tag(request):
+    return render(request, 'bertweb_tag.html')

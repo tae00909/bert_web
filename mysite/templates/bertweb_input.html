@@ -10,6 +10,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <!------ Include the above in your HEAD tag ---------->
     <link rel="stylesheet" href="{% static 'css/test.css' %}" />
+{#    <style>#}
+{#        #test_btn1{#}
+{#            border-radius: 5px;#}
+{#            background-color: rgba(0,0,0,0);#}
+{#            color: darkgreen;#}
+{#        }#}
+{#        #test_btn1:hover{#}
+{#            color:white;#}
+{#            background-color: darkgreen;#}
+{#        }#}
+{#    </style>#}
 
 </head>
 <body>
@@ -33,7 +44,7 @@
                     <header class="text-center pb-5">
                         <h1 class="h2">B.E.R.T</h1>
                         <div align="right">
-                            <a href ="{% url 'tag' %}">What is B.E.R.T?</a>
+                            <a href ="{% url 'tag' %}" class="myButton">What is B.E.R.T?</a>
                         </div>
                     </header>
                 </div>

@@ -43,11 +43,15 @@
                     <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
                         <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>
                         <h3>결과</h3>
-                        <p class="mb-0 mt-2 font-italic">{{ words }}</p>
-                        <footer class="blockquote-footer pt-4 mt-4 border-top">
-                            <p> words: <b>{{ words }}</b></p>
-                            <p> anms: <b>{{ anms }}</b></p>
-                            <p> ners: <b>{{ ners }}</b></p>
+                        <p class="mb-0 mt-2 font-italic">{{ context }}</p>
+                        <footer class="pt-4 mt-4 border-top">
+                            <div class="border-bottom mb-2"><p> 현재 anm 단어: <b>{{ words }}</b></p></div>
+                            <div class="mt-3">
+                            <h4 class="mb-3">ner 단어</h4>
+                            {% for key, val in ners.items %}
+                                <p>{{ val }} : {{ key }}</p>
+                            {% endfor %}
+                            </div>
                         </footer>
                     </blockquote><!-- END -->
                 </div>

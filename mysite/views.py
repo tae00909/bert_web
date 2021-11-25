@@ -25,6 +25,7 @@ def bert(request):
             pred.append(words)
             pred.append(anms)
             pred.append(ners)
+            pred.append(context)
 
             Predictions.objects.create(context=context)
 
@@ -43,7 +44,8 @@ def bert(request):
 def bert_output(request):
     return render(request, 'bertweb_output.html', {'words': pred[0],
                                                    'anms': pred[1],
-                                                   'ners': pred[2]})
+                                                   'ners': pred[2],
+                                                   'context':pred[3]})
 
 def bert_tag(request):
     return render(request, 'bertweb_tag.html')

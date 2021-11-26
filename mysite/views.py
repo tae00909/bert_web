@@ -47,5 +47,6 @@ def bert_output(request):
                                                    'ners': pred[2],
                                                    'context':pred[3]})
 
+
 def bert_tag(request):
     return render(request, 'bertweb_tag.html')

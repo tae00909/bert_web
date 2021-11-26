@@ -10,69 +10,54 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <!------ Include the above in your HEAD tag ---------->
     <link rel="stylesheet" href="{% static 'css/test.css' %}" />
-{#    <style>#}
-{#        #test_btn1{#}
-{#            border-radius: 5px;#}
-{#            background-color: rgba(0,0,0,0);#}
-{#            color: darkgreen;#}
-{#        }#}
-{#        #test_btn1:hover{#}
-{#            color:white;#}
-{#            background-color: darkgreen;#}
-{#        }#}
-{#    </style>#}
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+        body {
+            font-family: 'Merriweather', serif;
+        }
+    </style>
+
 
 </head>
 <body>
-{#    <form action="" method="post">#}
-{#        {% csrf_token %}#}
-{#        {{ form }}#}
-{#        <input type="submit">#}
-{#    </form>#}
-{##}
-{#    {% if form.is_valid %}#}
-{#        <p> words : <b>{{ words }}</b></p>#}
-{#        <p> anms: <b>{{ anms }}</b></p>#}
-{#        <p> ners: <b>{{ ners }}</b></p>#}
-{#    {% endif %}#}
+
 
     <section class="py-5">
+
         <div class="container">
             <!-- FOR DEMO  PURPOSE -->
             <div class="row">
                 <div class="col-lg-6 mx-auto">
                     <header class="text-center pb-5">
-                        <h1 class="h2">B.E.R.T</h1>
-                        <div align="right">
-                            <a href ="{% url 'tag' %}" class="myButton">What is B.E.R.T?</a>
+                        <h1 class="h2" style="font-size: 4rem">B . E . R . T</h1>
+                        <div>Who am I ?</div>
+                        <hr style="border: solid">
+                        <div align="center">
+                            <a class="myButton" style="margin-right:20px">NEWS</a>
+                            <a class="myButton" style="margin-right:20px">NEWS</a>
+                            <a class="myButton" style="margin-right:20px">NEWS</a>
+                            <a href ="{% url 'tag' %}" class="myButton">What is B.E.R.T ?</a>
                         </div>
                     </header>
                 </div>
             </div><!-- END -->
 
-
             <div class="row">
-                <div class="col-lg-6 mx-auto">
+                <div class="col-lg-6 mx-auto" style="width:750px; height:750px;">
 
-                    <!-- CUSTOM BLOCKQUOTE -->
-{#                    <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">#}
-{#                        <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>#}
-{#                        <p class="mb-0 mt-2 font-italic">"(여기는 문장)Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo <a href="#" class="text-info">@consequat</a>."</p>#}
-{#                        <footer class="blockquote-footer pt-4 mt-4 border-top">(여기는 결과)Someone famous in#}
-{#                            <cite title="Source Title">Source Title</cite>#}
-{#                        </footer>#}
-{#                    </blockquote><!-- END -->#}
-                    <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
+
+                    <blockquote class="blockquote shadow rounded">
                         <div class="mb-3">
                             <form action="" method="post">
                                 {% csrf_token %}
                                 <label for="exampleFormControlTextarea1" class="form-label">문장 입력</label>
                                 {{ form }}
-                                <input type="submit" value="submit">
+                                <input type="submit" class="myButton" value="결과 출력">
                             </form>
                         </div>
                     </blockquote>
-                    {% if form.is_valid %}#}
+                    {% if form.is_valid %}
                         <p> words : <b>{{ words }}</b></p>
                         <p> anms: <b>{{ anms }}</b></p>
                         <p> ners: <b>{{ ners }}</b></p>

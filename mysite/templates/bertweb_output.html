@@ -10,20 +10,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <!------ Include the above in your HEAD tag ---------->
     <link rel="stylesheet" href="{% static 'css/test.css' %}" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+        body {
+            font-family: 'Merriweather', serif;
+        }
+    </style>
 
 </head>
 <body>
-{#    <form action="" method="post">#}
-{#        {% csrf_token %}#}
-{#        {{ form }}#}
-{#        <input type="submit">#}
-{#    </form>#}
-{##}
-{#    {% if form.is_valid %}#}
-{#        <p> words : <b>{{ words }}</b></p>#}
-{#        <p> anms: <b>{{ anms }}</b></p>#}
-{#        <p> ners: <b>{{ ners }}</b></p>#}
-{#    {% endif %}#}
 
     <section class="py-5">
         <div class="container">
@@ -31,7 +26,9 @@
             <div class="row">
                 <div class="col-lg-6 mx-auto">
                     <header class="text-center pb-5">
-                        <h1 class="h2">B.E.R.T</h1>
+                        <h1 class="h2" style="font-size: 4rem">B . E . R . T</h1>
+                        <div>Who am I ?</div>
+                        <hr style="border: solid">
                     </header>
                 </div>
             </div><!-- END -->
@@ -40,16 +37,24 @@
             <div class="row">
                 <div class="col-lg-6 mx-auto">
                     <!-- CUSTOM BLOCKQUOTE -->
-                    <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
-                        <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>
+                    <blockquote class="blockquote">
+                        {#<div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>#}
                         <h3>결과</h3>
                         <p class="mb-0 mt-2 font-italic">{{ context }}</p>
                         <footer class="pt-4 mt-4 border-top">
-                            <div class="border-bottom mb-2"><p> 현재 anm 단어: <b>{{ words }}</b></p></div>
+                            <div class="border-bottom mb-2"><p> 현재 ANM 단어: <b>
+                                {% for word in words %}
+                                    {{ word }}
+                                {% endfor %}
+                            </b></p></div>
                             <div class="mt-3">
-                            <h4 class="mb-3">ner 단어</h4>
+                            <h4 class="mb-3">SOURCE</h4>
                             {% for key, val in ners.items %}
-                                <p>{{ val }} : {{ key }}</p>
+                                <div></div>
+                                {% for v in val %}
+                                    {{ v }}
+                                {% endfor %}
+                                -> {{ key }}
                             {% endfor %}
                             </div>
                         </footer>

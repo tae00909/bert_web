@@ -168,6 +168,13 @@ def model_infer(text):
             anms.append(ANM_CLASSES[anm_label])
             ners_tag.append(NER_CLASSES[ner_label])
 
+    
+
+    total_list = []
+    for word in words:
+        total_list.append(word.replace('#', ''))
+
+
     index_list = []
     ners = {}
 
@@ -177,8 +184,11 @@ def model_infer(text):
 
     for i in range(len(index_list)):
         if i == len(index_list) - 1:
-            ners[ners_tag[index_list[i]][:3]] = words[index_list[i]:]
+            ners[ners_tag[index_list[i]][:3]] = total_list[index_list[i]:]
         else:
-            ners[ners_tag[index_list[i]][:3]] = words[index_list[i]:index_list[i + 1]]
+            ners[ners_tag[index_list[i]][:3]] = total_list[index_list[i]:index_list[i + 1]]
 
-    return words, anms, ners
+
+
+
+    return total_list, anms, ners
